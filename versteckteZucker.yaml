@@ -1,0 +1,192 @@
+product-id: 778
+media-path: AudioZucker/%s
+welcome: versteckteZucker 
+init: $modus := 3 $zufall := 0 $gesucht := 4 $runde := 1 $zaehler := 2 $zaehler2 := 1 $versuch := 1 $auswertung := 0 $auswertung2 := 0 $text1zaehler:=0 $text2zaehler:=0 $text3zaehler:=0 $marker1 := 0 $marker2 := 0 $marker3 := 0 $marker4 := 0
+scripts:
+    lupe:
+    - $modus := 1 P(lupe)
+    spiel1:
+    - $modus := 3 $runde+=1 $auswertung:=0 $zaehler:=1 P(spiel1a) J(rundenwahl)
+    rundenwahl:
+    - $zaehler > 5? J(Auswertung)
+    - $runde > 3? ?($zufall,12345) (00 FF) $zufall%=15 $zufall+=1 J(zufallsmodus)
+    - $runde == 1? J(Runde1)
+    - $runde == 2? J(Runde2)
+    - $runde == 3? J(Runde3)
+    zufallsmodus:
+    - $zufall == 1? P(spiel1b1) $gesucht:=4 $versuch:=1 $zaehler+=1
+    - $zufall == 2? P(spiel1b2) $gesucht:=0 $versuch:=1 $zaehler+=1
+    - $zufall == 3? P(spiel1b3) $gesucht:=2 $versuch:=1 $zaehler+=1
+    - $zufall == 4? P(spiel1b4) $gesucht:=2 $versuch:=1 $zaehler+=1
+    - $zufall == 5? P(spiel1b5) $gesucht:=7 $versuch:=1 $zaehler+=1
+    - $zufall == 6? P(spiel1c1) $gesucht:=0 $versuch:=1 $zaehler+=1
+    - $zufall == 7? P(spiel1c2) $gesucht:=4 $versuch:=1 $zaehler+=1
+    - $zufall == 8? P(spiel1c3) $gesucht:=7 $versuch:=1 $zaehler+=1
+    - $zufall == 9? P(spiel1c4) $gesucht:=9 $versuch:=1 $zaehler+=1
+    - $zufall == 10? P(spiel1c5) $gesucht:=2 $versuch:=1 $zaehler+=1
+    - $zufall == 11? P(spiel1d1) $gesucht:=3 $versuch:=1 $zaehler+=1
+    - $zufall == 12? P(spiel1d2) $gesucht:=0 $versuch:=1 $zaehler+=1
+    - $zufall == 13? P(spiel1d3) $gesucht:=7 $versuch:=1 $zaehler+=1
+    - $zufall == 14? P(spiel1d4) $gesucht:=3 $versuch:=1 $zaehler+=1
+    - $zufall == 15? P(spiel1d5) $gesucht:=1 $versuch:=1 $zaehler+=1
+    Runde1:
+    - $zaehler==1? P(spiel1b1) $gesucht:=4 $versuch:=1 $zaehler+=1  
+    - $zaehler==2? P(spiel1b2) $gesucht:=0 $versuch:=1 $zaehler+=1 
+    - $zaehler==3? P(spiel1b3) $gesucht:=2 $versuch:=1 $zaehler+=1 
+    - $zaehler==4? P(spiel1b4) $gesucht:=2 $versuch:=1 $zaehler+=1 
+    - $zaehler==5? P(spiel1b5) $gesucht:=7 $versuch:=1 $zaehler+=1 
+    Runde2:
+    - $zaehler==1? P(spiel1c1) $gesucht:=0 $versuch:=1 $zaehler+=1   
+    - $zaehler==2? P(spiel1c2) $gesucht:=4 $versuch:=1 $zaehler+=1 
+    - $zaehler==3? P(spiel1c3) $gesucht:=7 $versuch:=1 $zaehler+=1 
+    - $zaehler==4? P(spiel1c4) $gesucht:=9 $versuch:=1 $zaehler+=1 
+    - $zaehler==5? P(spiel1c5) $gesucht:=2 $versuch:=1 $zaehler+=1 
+    Runde3:
+    - $zaehler==1? P(spiel1d1) $gesucht:=3 $versuch:=1 $zaehler+=1   
+    - $zaehler==2? P(spiel1d2) $gesucht:=0 $versuch:=1 $zaehler+=1 
+    - $zaehler==3? P(spiel1d3) $gesucht:=7 $versuch:=1 $zaehler+=1 
+    - $zaehler==4? P(spiel1d4) $gesucht:=3 $versuch:=1 $zaehler+=1 
+    - $zaehler==5? P(spiel1d5) $gesucht:=1 $versuch:=1 $zaehler+=1 
+    Auswertung:
+    - $auswertung>=9? P(richtigsound) P(super2) P(nochmalspielen) $modus:=1
+    - $auswertung>4? $auswertung<9? P(pling) P(gut) P(nochmalspielen) $modus:=1
+    - $auswertung<=4? P(falschsound) P(schaffstdu) P(nochmalanhoeren) $modus:=1
+    spiel2:
+    - $modus := 4 P(spiel2) J(VergleichSpiel)
+    VergleichSpiel:
+    - $zaehler2==1? P(spiel2a) $marker1:=1 $zaehler2+=1
+    - $zaehler2==2? P(spiel2b) $marker2:=1 $zaehler2+=1
+    - $zaehler2==3? P(spiel2c) $marker3:=1 $zaehler2+=1
+    - $zaehler2==4? P(spiel2d) $marker4:=1 $zaehler2+=1
+    - $zaehler2==5? $zaehler2:=1 J(Auswertung2)
+    Auswertung2:
+    - $auswertung2==4? P(richtigsound) P(super2) P(nochmalspielen) $auswertung2:=0 $modus:=1
+    - $auswertung2>1? $auswertung<4? P(pling) P(gut) P(nochmalspielen) $auswertung2:=0 $modus:=1
+    - $auswertung2<=1? P(falschsound) P(schaffstdu) P(nochmalanhoeren) $auswertung2:=0 $modus:=1
+    ketchup: 
+    - $modus == 1? $text1zaehler != 4? P(ketchup) $text1zaehler+=1
+    - $modus == 1? $text1zaehler == 4? P(text1) $text1zaehler:=0
+    - $modus == 3? P(tippezucker)
+    - $modus == 4? $marker3==1? P(falschsound) P(falsch) $marker3:=0 J(VergleichSpiel)
+    tee:
+    - $modus == 1? P(tee, tee2)
+    - $modus == 3? P(tippezucker)
+    milchschnitte:
+    - $modus == 1? $text1zaehler != 4? P(milchschnitte) $text1zaehler+=1
+    - $modus == 1? $text1zaehler == 4? P(text1) $text1zaehler:=0 
+    - $modus == 3? P(tippezucker)
+    - $modus == 4? $marker4==1? P(falschsound) P(nichtrichtig) $marker4:=0 J(VergleichSpiel)
+    jogurt:
+    - $modus == 1? P(jogurt, jogurt2) 
+    - $modus == 3? P(tippezucker)
+    osaft:
+    - $modus == 1? P(osaft, osaft2)
+    - $modus == 3? P(tippezucker) 
+    - $modus == 4? $marker1==1? P(falschsound) P(falsch) $marker1:=0 J(VergleichSpiel)    
+    keks:
+    - $modus == 1? $text2zaehler != 4? P(keks) $text2zaehler+=1
+    - $modus == 1? $text2zaehler == 4? P(text2) $text2zaehler:=0 
+    - $modus == 3? P(tippezucker)
+    muffin:
+    - $modus == 1? $text2zaehler != 4? P(muffin) $text2zaehler+=1
+    - $modus == 1? $text2zaehler == 4? P(text2) $text2zaehler:=0 
+    - $modus == 3? P(tippezucker)
+    - $modus == 4? $marker2==1? P(falschsound) P(falsch) $marker2:=0 J(VergleichSpiel)
+    gummibaerchen:
+    - $modus == 1? $text2zaehler != 4? P(gummibaerchen) $text2zaehler+=1
+    - $modus == 1? $text2zaehler == 4? P(text2) $text2zaehler:=0 
+    - $modus == 3? P(tippezucker)
+    cola:
+    - $modus == 1? $text3zaehler != 4? P(cola) $text3zaehler+=1
+    - $modus == 1? $text3zaehler == 4? P(text3) $text3zaehler:=0 
+    - $modus == 3? P(tippezucker)
+    - $modus == 4? $marker1==1? P(richtigsound) P(richtig) $marker1:=0 $auswertung2+=1 J(VergleichSpiel)    
+    wasser:
+    - $modus == 1? P(wasser, wasser2)
+    - $modus == 3? P(tippezucker)
+    schokolade:
+    - $modus == 1? P(schokolade, schokolade2)
+    - $modus == 3? P(tippezucker)
+    - $modus == 4? $marker2==1? P(richtigsound) P(richtig) $marker2:=0 $auswertung2+=1 J(VergleichSpiel)
+    eis:
+    - $modus == 1? $text2zaehler != 4? P(eis) $text2zaehler+=1
+    - $modus == 1? $text2zaehler == 4? P(text2) $text2zaehler:=0 
+    - $modus == 3? P(tippezucker)
+    - $modus == 4? $marker4==1? P(richtigsound) P(richtig) $marker4:=0 $auswertung2+=1 J(VergleichSpiel)
+    marmelade:
+    - $modus == 1? P(marmelade, marmelade2)
+    - $modus == 3? P(tippezucker)
+    - $modus == 4? $marker3==1? P(richtigsound) P(richtig) $marker3:=0 $auswertung2+=1 J(VergleichSpiel)
+    nutella:
+    - $modus == 1? $text3zaehler != 4? P(nutella) $text3zaehler+=1
+    - $modus == 1? $text3zaehler == 4? P(text3) $text3zaehler:=0 
+    - $modus == 3? P(tippezucker)    
+    mitteZucker:
+    - $modus == 1? P(mitteZucker, mitteZucker2)
+    keinZucker:
+    - $modus == 1? P(keinZucker)
+    - $modus == 2? P(zucker)
+    - $modus == 3? $gesucht == 0? $versuch==1? P(richtigsound) P(richtig) $auswertung+=2 $gesucht:=100 J(rundenwahl)
+    - $modus == 3? $gesucht == 0? $versuch==2? P(richtigsound) P(richtig) $auswertung+=1 $gesucht:=100 J(rundenwahl)
+    - $modus == 3? $gesucht == 100? P(richtigsound) P(richtig) J(rundenwahl)
+    - $modus == 3? $zaehler == 6? $versuch==2? $gesucht := 66 P(falschsound) P(nichtrichtig) J(rundenwahl)
+    - $modus == 3? $versuch != 2? $versuch+=1 P(falschsound) P(versuchsnochmal)  
+    - $modus == 3? $versuch == 2? $gesucht := 66 P(falschsound) P(falsch) J(rundenwahl)
+    einZucker:
+    - $modus == 1? P(einZucker)
+    - $modus == 2? P(zucker)
+    - $modus == 3? $gesucht == 1? $versuch==1? P(richtigsound) P(richtig) $auswertung+=2 $gesucht:=11 J(rundenwahl)
+    - $modus == 3? $gesucht == 1? $versuch==2? P(richtigsound) P(richtig) $auswertung+=1 $gesucht:=11 J(rundenwahl)
+    - $modus == 3? $gesucht == 11? P(richtigsound) P(richtig) J(rundenwahl)
+    - $modus == 3? $zaehler == 6? $versuch==2? $gesucht := 66 P(falschsound) P(nichtrichtig) J(rundenwahl)
+    - $modus == 3? $versuch != 2? $versuch+=1 P(falschsound) P(versuchsnochmal)  
+    - $modus == 3? $versuch == 2? $gesucht := 66 P(falschsound) P(falsch) J(rundenwahl)
+    zweiZucker:
+    - $modus == 1? P(zweiZucker)
+    - $modus == 2? P(zucker)
+    - $modus == 3? $gesucht == 2? $versuch==1? P(richtigsound) P(richtig) $auswertung+=2 $gesucht:=22 J(rundenwahl)
+    - $modus == 3? $gesucht == 2? $versuch==2? P(richtigsound) P(richtig) $auswertung+=1 $gesucht:=22 J(rundenwahl)
+    - $modus == 3? $gesucht == 22? P(richtigsound) P(richtig) J(rundenwahl)
+    - $modus == 3? $zaehler == 6? $versuch==2? $gesucht := 66 P(falschsound) P(nichtrichtig) J(rundenwahl)
+    - $modus == 3? $versuch != 2? $versuch+=1 P(falschsound) P(versuchsnochmal)  
+    - $modus == 3? $versuch == 2? $gesucht := 66 P(falschsound) P(falsch) J(rundenwahl)  
+    dreiZucker:
+    - $modus == 1? P(dreiZucker)
+    - $modus == 2? P(zucker)
+    - $modus == 3? $gesucht == 3? $versuch==1? P(richtigsound) P(richtig) $auswertung+=2 $gesucht:=33 J(rundenwahl)
+    - $modus == 3? $gesucht == 3? $versuch==2? P(richtigsound) P(richtig) $auswertung+=1 $gesucht:=33 J(rundenwahl)
+    - $modus == 3? $gesucht == 33? P(richtigsound) P(richtig) J(rundenwahl)
+    - $modus == 3? $zaehler == 6? $versuch==2? $gesucht := 66 P(falschsound) P(nichtrichtig) J(rundenwahl)
+    - $modus == 3? $versuch != 2? P(falschsound) P(versuchsnochmal) $versuch+=1 
+    - $modus == 3? $versuch == 2? $gesucht := 66 P(falschsound) P(falsch) J(rundenwahl)
+    vierZucker:
+    - $modus == 1? P(vierZucker)
+    - $modus == 2? P(zucker)
+    - $modus == 3? $gesucht == 4? $versuch==1? P(richtigsound) P(richtig) $auswertung+=2 $gesucht:=44 J(rundenwahl)
+    - $modus == 3? $gesucht == 4? $versuch==2? P(richtigsound) P(richtig) $auswertung+=1 $gesucht:=44 J(rundenwahl)
+    - $modus == 3? $gesucht == 44? P(richtigsound) P(richtig) J(rundenwahl)
+    - $modus == 3? $zaehler == 6? $versuch==2? $gesucht := 66 P(falschsound) P(nichtrichtig) J(rundenwahl)
+    - $modus == 3? $versuch != 2? $versuch+=1 P(falschsound) P(versuchsnochmal)  
+    - $modus == 3? $versuch == 2? $gesucht := 66 P(falschsound) P(falsch) J(rundenwahl)
+    siebenZucker:
+    - $modus == 1? P(siebenZucker)
+    - $modus == 2? P(zucker) 
+    - $modus == 3? $gesucht == 7? $versuch==1? P(richtigsound) P(richtig) $auswertung+=2 $gesucht:=77 J(rundenwahl)
+    - $modus == 3? $gesucht == 7? $versuch==2? P(richtigsound) P(richtig) $auswertung+=1 $gesucht:=77 J(rundenwahl)
+    - $modus == 3? $gesucht == 77? P(richtigsound) P(richtig) J(rundenwahl)
+    - $modus == 3? $zaehler == 6? $versuch==2? $gesucht := 66 P(falschsound) P(nichtrichtig) J(rundenwahl)
+    - $modus == 3? $versuch != 2? $versuch+=1 P(falschsound) P(versuchsnochmal)  
+    - $modus == 3? $versuch == 2? $gesucht := 66 P(falschsound) P(falsch) J(rundenwahl)
+    neunZucker:
+    - $modus == 1? P(neunZucker)
+    - $modus == 2? P(zucker)
+    - $modus == 3? $gesucht == 9? $versuch == 1? P(richtigsound) P(richtig) $auswertung+=2 $gesucht:=99 J(rundenwahl)
+    - $modus == 3? $gesucht == 9? $versuch == 2? P(richtigsound) P(richtig) $auswertung+=1 $gesucht:=99 J(rundenwahl)
+    - $modus == 3? $gesucht == 99? P(richtigsound) P(richtig) J(rundenwahl)
+    - $modus == 3? $zaehler == 6? $versuch == 2? $gesucht := 66 P(falschsound) P(nichtrichtig) J(rundenwahl)
+    - $modus == 3? $versuch != 2? $versuch += 1 P(falschsound) P(versuchsnochmal)  
+    - $modus == 3? $versuch == 2? $gesucht := 66 P(falschsound) P(falsch) J(rundenwahl)
+    fragen:
+    - $modus == 1? P(fragen)
+    antwort:
+    - $modus == 1? P(antwort)

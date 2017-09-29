@@ -1,0 +1,54 @@
+# This file contains a mapping from script names to oid codes.
+# This way the existing scripts are always assigned to the the
+# same codes, even if you add further scripts.
+# 
+# You can copy the contents of this file into the main .yaml file,
+# if you want to have both together.
+# 
+# If you delete this file, the next run of "tttool assemble" might
+# use different codes for your scripts, and you might have to re-
+# create the images for your product.
+scriptcodes:
+  ebene5: 3725
+  antworten: 3747
+  ei: 3727
+  schokolade: 3742
+  wasserflasche: 3749
+  ebene3: 3723
+  karotte: 3734
+  cupcake: 3720
+  ebene4: 3724
+  setzero: 3750
+  butter: 3719
+  ebene2: 3722
+  brot: 3718
+  milch: 3738
+  testzaehler: 3751
+  erdbeere: 3754
+  brezel: 3752
+  apfel: 3715
+  nudel: 3739
+  kaese: 3733
+  wasser: 3748
+  gluehbirne: 3730
+  cola: 3753
+  fragen: 3729
+  tee: 3745
+  spirelli: 3744
+  lupe: 3737
+  banane: 3716
+  fisch: 3728
+  ebene6: 3726
+  kartoffel: 3735
+  milchglas: 3757
+  setzero2: 3756
+  birne: 3717
+  ebene1: 3721
+  paprika: 3741
+  korn: 3736
+  spiel: 3743
+  gurke: 3731
+  tomate: 3746
+  oel: 3740
+  jogurt: 3732
+  sonnenoel: 3755

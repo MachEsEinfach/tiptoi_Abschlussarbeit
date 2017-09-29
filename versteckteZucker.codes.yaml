@@ -1,0 +1,46 @@
+# This file contains a mapping from script names to oid codes.
+# This way the existing scripts are always assigned to the the
+# same codes, even if you add further scripts.
+# 
+# You can copy the contents of this file into the main .yaml file,
+# if you want to have both together.
+# 
+# If you delete this file, the next run of "tttool assemble" might
+# use different codes for your scripts, and you might have to re-
+# create the images for your product.
+scriptcodes:
+  rundenwahl: 11785
+  muffin: 11784
+  schokolade: 11772
+  Runde2: 11752
+  spiel1: 11774
+  dreiZucker: 11756
+  neunZucker: 11769
+  Runde3: 11753
+  zufallsmodus: 11759
+  keks: 11783
+  jogurt: 11761
+  wasser: 11778
+  mitteZucker: 11767
+  milchschnitte: 11766
+  cola: 11755
+  zweiZucker: 11779
+  keinZucker: 11762
+  fragen: 11768
+  tee: 11776
+  ketchup: 11763
+  lupe: 11764
+  eis: 11758
+  Auswertung: 11750
+  osaft: 11771
+  gummibaerchen: 11760
+  marmelade: 11765
+  einZucker: 11757
+  antwort: 11754
+  Auswertung2: 11782
+  vierZucker: 11777
+  nutella: 11770
+  siebenZucker: 11773
+  VergleichSpiel: 11781
+  Runde1: 11751
+  spiel2: 11775

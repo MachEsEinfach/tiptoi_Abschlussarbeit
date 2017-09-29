@@ -1,0 +1,203 @@
+product-id: 777
+media-path: AudioErnaehrung/%s
+welcome: ernaehrungspyramide
+init: $modus := 1 $gesucht:= 0 $zaehler:=0 $zuordnungschoko:=0 $zuordnungwasser:=0 $zuordnungobst:=0 $zuordnunggemuese:=0 $zuordnungnudel:=0 $zuordnungjogurt:=0 $zuordnungoel:=0 $zuordnungerdbeere:=0 $zuordnungei:=0 $zuordnungcola:=0 $zuordnungbrezel:=0 $ueberschriftzaehler:=1 $fragenzaehler:=1 $ebene1zaehler:=1 $ebene2zaehler:=1 $ebene3zaehler:=1 $ebene4zaehler:=1 $ebene5zaehler:=1 $ebene6zaehler:=1 $brotzaehler:=1 $birnezaehler:=1 $fischzaehler:=1 $teezaehler:=1
+scripts:
+    lupe:
+    - $modus := 1 P(lupe)
+    gluehbirne:
+    - $modus := 2 P(gluehbirne)
+    spiel:
+    - $modus := 3 $gesucht:= 0  P(spiel) J(setzero)
+    fragen:
+    - $modus == 1? P(fragen1)
+    - $modus == 2?  $fragenzaehler == 1? P(fragen2a) $fragenzaehler:=2 
+    - $modus == 2?  $fragenzaehler == 2? P(fragen2b) $fragenzaehler:=1
+    antworten:
+    - $modus == 1? P(ueberschrift1)
+    - $modus == 2?  $ueberschriftzaehler == 1? P(ueberschrift2a) $ueberschriftzaehler:=2 
+    - $modus == 2?  $ueberschriftzaehler == 2? P(ueberschrift2b) $ueberschriftzaehler:=1
+    cupcake: 
+    - $modus == 1? J(ebene6)
+    - $modus == 2? P(cupcake) 
+    - $modus == 3? J(ebene6)
+    butter:
+    - $modus == 1? J(ebene5)
+    - $modus == 2? P(butter)
+    - $modus == 3? J(ebene5)    
+    oel:
+    - $modus == 1? J(ebene5)
+    - $modus == 2? P(oel)
+    - $modus == 3? J(ebene5)    
+    milch:
+    - $modus == 1? J(ebene4)
+    - $modus == 2? P(milch)
+    - $modus == 3? J(ebene4)  
+    milchglas:
+    - $modus == 1? J(ebene4)
+    - $modus == 2? P(milch2)
+    - $modus == 3? J(ebene4) 
+    kaese:
+    - $modus == 1? J(ebene4)
+    - $modus == 2? P(kaese)
+    - $modus == 3? J(ebene4)    
+    fisch:
+    - $modus == 1? J(ebene4)
+    - $modus == 2? $fischzaehler == 1? P(fisch) $fischzaehler:=2 
+    - $modus == 2? $fischzaehler == 2? P(fisch2) $fischzaehler:=1
+    - $modus == 3? J(ebene4)     
+    brot: 
+    - $modus == 1? J(ebene3)
+    - $modus == 2? $brotzaehler == 1? P(brot) $brotzaehler:=2 
+    - $modus == 2? $brotzaehler == 2? P(brot2) $brotzaehler:=1
+    - $modus == 2? P(brot)
+    - $modus == 3? J(ebene3)     
+    korn:
+    - $modus == 1? J(ebene3)
+    - $modus == 2? P(korn)
+    - $modus == 3? J(ebene3)     
+    nudel:
+    - $modus == 1? J(ebene3)
+    - $modus == 2? P(nudeln)
+    - $modus == 3? J(ebene3)     
+       
+    apfel:
+    - $modus == 1? J(ebene2)
+    - $modus == 2? P(apfel)
+    - $modus == 3? J(ebene2)    
+    birne:
+    - $modus == 1? J(ebene2)
+    - $modus == 2? $birnezaehler == 1? P(birne) $birnezaehler:=2 
+    - $modus == 2? $birnezaehler == 2? P(birne2) $birnezaehler:=1
+    - $modus == 3? J(ebene2)    
+    karotte:
+    - $modus == 1? J(ebene2)
+    - $modus == 2? P(karotte)
+    - $modus == 3? J(ebene2)    
+    gurke:
+    - $modus == 1? J(ebene2)
+    - $modus == 2? P(gurke)
+    - $modus == 3? J(ebene2)    
+    paprika:
+    - $modus == 1? J(ebene2)
+    - $modus == 2? P(paprika)
+    - $modus == 3? J(ebene2)
+    wasser:
+    - $modus == 1? J(ebene1)
+    - $modus == 2? P(wasser) 
+    - $modus == 3? J(ebene1)
+    tee:
+    - $modus == 1? J(ebene1)
+    - $modus == 2? $teezaehler == 1? P(tee) $teezaehler:=2 
+    - $modus == 2? $teezaehler == 2? P(tee2) $teezaehler:=1
+    - $modus == 3? J(ebene1)
+    ebene1:
+    - $modus == 1? $ebene1zaehler == 1? P(ebene1a) $ebene1zaehler:=2 
+    - $modus == 1? $ebene1zaehler == 2? P(ebene1b) $ebene1zaehler:=3
+    - $modus == 1? $ebene1zaehler == 3? P(ebene1c) $ebene1zaehler:=1
+    - $modus == 3? $gesucht == 1? P(richtigSound) P(richtig) $zuordnungwasser:=1 $gesucht:=11 $zaehler+=1 J(testzaehler)
+    - $modus == 3? $gesucht == 11? P(richtigSound) P(richtig) J(testzaehler)
+    - $modus == 3? P(falschSound) P(falsch)
+    ebene2:
+    - $modus == 1? $ebene2zaehler == 1? P(ebene2a) $ebene2zaehler:=2 
+    - $modus == 1? $ebene2zaehler == 2? P(ebene2b) $ebene2zaehler:=1
+    - $modus == 3? $gesucht == 2? P(richtigSound) P(richtig) $zuordnunggemuese:=1 $gesucht:=25 $zaehler+=1 J(testzaehler)
+    - $modus == 3? $gesucht == 21? P(richtigSound) P(richtig) $zuordnungobst:=1 $gesucht:=25 $zaehler+=1 J(testzaehler)
+    - $modus == 3? $gesucht == 22? P(richtigSound) P(richtig) $zuordnungerdbeere:=1 $gesucht:=25 $zaehler+=1 J(testzaehler)
+    - $modus == 3? $gesucht == 25? P(richtigSound) P(richtig) J(testzaehler)
+    - $modus == 3? P(falschSound) P(falsch)
+    kartoffel:
+    - $modus == 1? J(ebene3)
+    - $modus == 2? P(kartoffeln)
+    - $modus == 3? J(ebene3)
+    ebene3:
+    - $modus == 1? $ebene3zaehler == 1? P(ebene3a) $ebene3zaehler:=2 
+    - $modus == 1? $ebene3zaehler == 2? P(ebene3b) $ebene3zaehler:=1
+    - $modus == 3? $gesucht == 3? P(richtigSound) P(richtig) $zuordnungnudel:=1 $gesucht:=33 $zaehler+=1 J(testzaehler)
+    - $modus == 3? $gesucht == 31? P(richtigSound) P(richtig) $zuordnungbrezel:=1 $gesucht:=33 $zaehler+=1 J(testzaehler)
+    - $modus == 3? $gesucht == 33? P(richtigSound) P(richtig) J(testzaehler)
+    - $modus == 3? P(falschSound) P(falsch)
+    ebene4:
+    - $modus == 1? $ebene4zaehler == 1? P(ebene4a) $ebene4zaehler:=2 
+    - $modus == 1? $ebene4zaehler == 2? P(ebene4b) $ebene4zaehler:=3
+    - $modus == 1? $ebene4zaehler == 3? P(ebene4c) $ebene4zaehler:=4
+    - $modus == 1? $ebene4zaehler == 4? P(ebene4d) $ebene4zaehler:=1
+    - $modus == 3? $gesucht == 4? P(richtigSound) P(richtig) $zuordnungjogurt:=1 $gesucht:=44 $zaehler+=1 J(testzaehler)
+    - $modus == 3? $gesucht == 41? P(richtigSound) P(richtig) $zuordnungei:=1 $gesucht:=44 $zaehler+=1 J(testzaehler)
+    - $modus == 3? $gesucht == 44? P(richtigSound) P(richtig) J(testzaehler)
+    - $modus == 3? P(falschSound) P(falsch)
+    ebene5:
+    - $modus == 1? $ebene5zaehler == 1? P(ebene5a) $ebene5zaehler:=2 
+    - $modus == 1? $ebene5zaehler == 2? P(ebene5b) $ebene5zaehler:=1
+    - $modus == 3? $gesucht == 5? P(richtigSound) P(richtig) $zuordnungoel:=1 $gesucht:=55 $zaehler+=1 J(testzaehler)
+    - $modus == 3? $gesucht == 55? P(richtigSound) P(richtig) J(testzaehler)
+    - $modus == 3? P(falschSound) P(falsch)
+    ebene6:
+    - $modus == 1? $ebene6zaehler == 1? P(ebene6a) $ebene6zaehler:=2 
+    - $modus == 1? $ebene6zaehler == 2? P(ebene6b) $ebene6zaehler:=3
+    - $modus == 1? $ebene6zaehler == 3? P(ebene6c) $ebene6zaehler:=1
+    - $modus == 3? $gesucht == 6? P(richtigSound) P(richtig) $zuordnungschoko:=1 $gesucht:=66 $zaehler+=1 J(testzaehler)
+    - $modus == 3? $gesucht == 61? P(richtigSound) P(richtig) $zuordnungcola:=1 $gesucht:=66 $zaehler+=1 J(testzaehler)
+    - $modus == 3? $gesucht == 66? P(richtigSound) P(richtig) J(testzaehler)
+    - $modus == 3? P(falschSound) P(falsch)   
+    wasserflasche:
+    - $modus == 1? P(Verweis)
+    - $modus == 2? P(Verweis)
+    - $modus == 3? $zuordnungwasser == 0? $gesucht:= 1 P(pling)
+    - $modus == 3? $zuordnungwasser == 1? P(schonZugeordnetSound) P(schonZugeordnet)
+    schokolade:
+    - $modus == 1? P(Verweis)
+    - $modus == 2? P(Verweis)
+    - $modus == 3? $zuordnungschoko == 0? $gesucht:= 6 P(pling)
+    - $modus == 3? $zuordnungschoko == 1? P(schonZugeordnetSound) P(schonZugeordnet)
+    spirelli:
+    - $modus == 1? P(Verweis)
+    - $modus == 2? P(Verweis)
+    - $modus == 3? $zuordnungnudel == 0? $gesucht:= 3 P(pling)
+    - $modus == 3? $zuordnungnudel == 1? P(schonZugeordnetSound) P(schonZugeordnet)
+    tomate:
+    - $modus == 1? P(Verweis)
+    - $modus == 2? P(Verweis)
+    - $modus == 3? $zuordnunggemuese == 0? $gesucht:= 2 P(pling)
+    - $modus == 3? $zuordnunggemuese == 1? P(schonZugeordnetSound) P(schonZugeordnet)
+    jogurt:
+    - $modus == 1? P(Verweis)
+    - $modus == 2? P(Verweis)
+    - $modus == 3? $zuordnungjogurt == 0? $gesucht:= 4 P(pling)
+    - $modus == 3? $zuordnungjogurt == 1? P(schonZugeordnetSound) P(schonZugeordnet)
+    banane:
+    - $modus == 1? P(Verweis)
+    - $modus == 2? P(Verweis)    
+    - $modus == 3? $zuordnungobst == 0? $gesucht:= 21 P(pling)
+    - $modus == 3? $zuordnungobst == 1? P(schonZugeordnetSound) P(schonZugeordnet)
+    sonnenoel:
+    - $modus == 1? P(Verweis)
+    - $modus == 2? P(Verweis)    
+    - $modus == 3? $zuordnungoel == 0? $gesucht:= 5 P(pling)
+    - $modus == 3? $zuordnungoel == 1? P(schonZugeordnetSound) P(schonZugeordnet)
+    cola:
+    - $modus == 1? P(Verweis)
+    - $modus == 2? P(Verweis)    
+    - $modus == 3? $zuordnungcola == 0? $gesucht:= 61 P(pling)
+    - $modus == 3? $zuordnungcola == 1? P(schonZugeordnetSound) P(schonZugeordnet)
+    brezel:
+    - $modus == 1? P(Verweis)
+    - $modus == 2? P(Verweis)    
+    - $modus == 3? $zuordnungbrezel == 0? $gesucht:= 31 P(pling)
+    - $modus == 3? $zuordnungbrezel == 1? P(schonZugeordnetSound) P(schonZugeordnet)
+    erdbeere:
+    - $modus == 1? P(Verweis)
+    - $modus == 2? P(Verweis)    
+    - $modus == 3? $zuordnungerdbeere == 0? $gesucht:= 22 P(pling)
+    - $modus == 3? $zuordnungerdbeere == 1? P(schonZugeordnetSound) P(schonZugeordnet)
+    ei:
+    - $modus == 1? P(Verweis)
+    - $modus == 2? P(Verweis)    
+    - $modus == 3? $zuordnungei == 0? $gesucht:= 41 P(pling)
+    - $modus == 3? $zuordnungei == 1? P(schonZugeordnetSound) P(schonZugeordnet) 
+    setzero:
+    - $zuordnungobst:=0 $zuordnunggemuese:=0 $zuordnungnudel:=0 $zuordnungjogurt:=0 $zuordnungschoko:=0 $zuordnungwasser:=0 J(setzero2)
+    setzero2:
+    - $zaehler:=0 $zuordnungbrezel:=0 $zuordnungcola:=0 $zuordnungei:=0 $zuordnungerdbeere:=0 $zuordnungoel:=0 P(pling)
+    testzaehler:
+    - $zaehler==11? P(richtigSound) P(super)
