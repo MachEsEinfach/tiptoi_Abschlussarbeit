@@ -1,6 +1,6 @@
 # tiptoi_Abschlussarbeit
 
-In dieser Arbeit habe ich ein Projekt zur Gesundheitsförderung für Kinder mit dem tiptoi-Stift entwickelt und dokumentiert. Die Ergebnisse finden sich in den hier gespeicherten Dateien, die Dokumentation befindet sich in der pdf-Datei.
+In dieser Arbeit habe ich ein Projekt zur Gesundheitsförderung für Kinder mit dem tiptoi-Stift entwickelt und dokumentiert. Die Ergebnisse finden sich in den hier zur Verfügung gestellten Dateien, die vollständige Abschlussarbeit befindet sich in der pdf-Datei.
 
 Unter den nachfolgenden Links könnt ihr die Ergebnisse der Arbeit in kurzen Videos sehen: [Ernaehrungspyramide](https://youtu.be/hEyZJ95rms8), [Versteckte Zucker](https://youtu.be/E92o13Wb-SQ)
 
